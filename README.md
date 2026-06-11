@@ -1,6 +1,6 @@
 # Deflector Control
 
-Mobile-friendly lighting control for a Star Trek: Strange New Worlds corridor tech box. The app runs a local Node.js controller, renders Vue 3 controls for a phone browser, and sends DMX frames through OLA.
+Mobile-friendly lighting control originally created for a Star Trek: Strange New Worlds corridor tech box that I bought at auction from the set on May 30, 2026. The app runs a local Node.js controller, renders Vue 3 controls for a phone browser, and sends DMX frames through OLA.
 
 The current setup assumes:
 
