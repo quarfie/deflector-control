@@ -1,0 +1,14 @@
+{
+  "startupMode": "normal",
+  "powerOnAtStartup": false,
+  "frameRate": 25,
+  "olaUrl": "http://localhost:9090",
+  "remoteOlaUrl": "http://pizero.local:9090",
+  "output": "dry-run",
+  "defaults": {
+    "enabled": true,
+    "on": true,
+    "brightness": 1,
+    "color": "#FFFFFF"
+  }
+}

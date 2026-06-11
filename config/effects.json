@@ -1,0 +1,22 @@
+{
+  "soft-pulse": {
+    "type": "pulse",
+    "period": 3,
+    "min": 0.25,
+    "max": 1
+  },
+  "damage-light": {
+    "type": "glitch",
+    "intensity": 3,
+    "speed": 6,
+    "cluster": 0.8,
+    "fade": 0.05
+  },
+  "damage-hot": {
+    "type": "glitch",
+    "intensity": 7,
+    "speed": 8,
+    "cluster": 0.6,
+    "fade": 0
+  }
+}

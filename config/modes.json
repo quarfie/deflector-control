@@ -1,0 +1,142 @@
+{
+  "modes": [
+    {
+      "id": "normal",
+      "label": "Normal",
+      "elements": {
+        "green-lights": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 5, "fade": 1 },
+            { "on": false, "duration": 5, "fade": 1 }
+          ]
+        },
+        "orange-lights": {
+          "brightness": 0.65,
+          "animation": [
+            { "on": true, "duration": 8, "fade": 2 }
+          ]
+        },
+        "jelly-bean-buttons": {
+          "brightness": 0.8,
+          "animation": [
+            { "on": true, "duration": 2.5, "fade": 0.25 },
+            { "on": false, "duration": 0.35, "fade": 0.05 },
+            { "on": true, "duration": 4, "fade": 0.2 }
+          ]
+        },
+        "switch-1": {
+          "brightness": 0.75,
+          "animation": [
+            { "on": true, "duration": 12, "fade": 0.75 }
+          ]
+        },
+        "switch-bank": {
+          "brightness": 0.7,
+          "animation": [
+            { "on": true, "duration": 7, "fade": 0.5 },
+            { "on": false, "duration": 0.4, "fade": 0.05 },
+            { "on": true, "duration": 5, "fade": 0.4 }
+          ]
+        },
+        "edge-lights": {
+          "brightness": 0.65,
+          "color": "#88CCFF",
+          "animation": [
+            { "on": true, "duration": 8, "fade": 2 }
+          ]
+        }
+      }
+    },
+    {
+      "id": "red-alert",
+      "label": "Red Alert",
+      "elements": {
+        "green-lights": {
+          "brightness": 0.2,
+          "animation": [
+            { "on": true, "duration": 0.4, "fade": 0.05 },
+            { "on": false, "duration": 0.6, "fade": 0.1 }
+          ]
+        },
+        "orange-lights": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.55, "fade": 0.05 },
+            { "on": false, "duration": 0.45, "fade": 0.05 }
+          ]
+        },
+        "jelly-bean-buttons": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.18, "fade": 0 },
+            { "on": false, "duration": 0.12, "fade": 0 }
+          ]
+        },
+        "switch-1": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 1.2, "fade": 0.1 },
+            { "on": false, "duration": 0.25, "fade": 0 }
+          ]
+        },
+        "switch-bank": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.8, "fade": 0.1 },
+            { "on": false, "duration": 0.25, "fade": 0 }
+          ]
+        },
+        "edge-lights": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": true, "duration": 0.45, "fade": 0.05 },
+            { "on": false, "duration": 0.35, "fade": 0.05 }
+          ]
+        }
+      }
+    },
+    {
+      "id": "damage",
+      "label": "Damage",
+      "elements": {
+        "green-lights": {
+          "effect": "damage-light"
+        },
+        "orange-lights": {
+          "brightness": 0.85,
+          "effect": {
+            "type": "glitch",
+            "intensity": 6,
+            "speed": 7,
+            "cluster": 0.7,
+            "fade": 0.03
+          }
+        },
+        "jelly-bean-buttons": {
+          "brightness": 1,
+          "effect": {
+            "type": "glitch",
+            "intensity": 8,
+            "speed": 10,
+            "cluster": 0.75,
+            "fade": 0
+          }
+        },
+        "switch-1": {
+          "effect": "damage-light"
+        },
+        "switch-bank": {
+          "brightness": 0.9,
+          "effect": "damage-hot"
+        },
+        "edge-lights": {
+          "brightness": 0.8,
+          "color": "#FF2200",
+          "effect": "damage-hot"
+        }
+      }
+    }
+  ]
+}

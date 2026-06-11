@@ -1,0 +1,41 @@
+{
+  "universe": 1,
+  "channelCount": 10,
+  "elements": {
+    "green-lights": {
+      "label": "Green Lights",
+      "type": "dimmer",
+      "channels": { "level": 1 }
+    },
+    "orange-lights": {
+      "label": "Orange Lights",
+      "type": "dimmer",
+      "channels": { "level": 2 }
+    },
+    "jelly-bean-buttons": {
+      "label": "Jelly Bean Buttons",
+      "type": "dimmer",
+      "channels": { "level": 3 }
+    },
+    "switch-1": {
+      "label": "Switch 1",
+      "type": "dimmer",
+      "channels": { "level": 4 }
+    },
+    "switch-bank": {
+      "label": "Switch Bank",
+      "type": "dimmer",
+      "channels": { "level": 5 }
+    },
+    "edge-lights": {
+      "label": "Edge Lights",
+      "type": "rgbw",
+      "channels": {
+        "red": 6,
+        "green": 7,
+        "blue": 8,
+        "white": 9
+      }
+    }
+  }
+}
