@@ -45,6 +45,55 @@
           "animation": [
             { "on": true, "duration": 8, "fade": 2 }
           ]
+        },
+        "tech-box-2-edge-lights": {
+          "brightness": 0.65,
+          "color": "#88CCFF",
+          "animation": [
+            { "on": true, "duration": 8, "fade": 2 }
+          ]
+        },
+        "tech-box-2-top-right-red-line": {
+          "brightness": 0.75,
+          "animation": [
+            { "on": true, "duration": 8, "fade": 1.5 }
+          ]
+        },
+        "tech-box-2-top-left-red-lights": {
+          "brightness": 0.7,
+          "animation": [
+            { "on": true, "duration": 3.2, "fade": 0.3 },
+            { "on": false, "duration": 0.4, "fade": 0.05 },
+            { "on": true, "duration": 5, "fade": 0.3 }
+          ]
+        },
+        "tech-box-2-top-left-green-light": {
+          "brightness": 0.85,
+          "animation": [
+            { "on": true, "duration": 5, "fade": 1 },
+            { "on": false, "duration": 5, "fade": 1 }
+          ]
+        },
+        "tech-box-2-bottom-left-amber-lights": {
+          "brightness": 0.7,
+          "animation": [
+            { "on": true, "duration": 8, "fade": 2 }
+          ]
+        },
+        "tech-box-2-bottom-left-green-light": {
+          "brightness": 0.9,
+          "animation": [
+            { "on": true, "duration": 5, "fade": 1 },
+            { "on": false, "duration": 5, "fade": 1 }
+          ]
+        },
+        "tech-box-2-bottom-right-lights": {
+          "brightness": 0.65,
+          "animation": [
+            { "on": true, "duration": 7, "fade": 0.5 },
+            { "on": false, "duration": 0.4, "fade": 0.05 },
+            { "on": true, "duration": 5, "fade": 0.4 }
+          ]
         }
       }
     },
@@ -94,6 +143,56 @@
             { "on": true, "duration": 0.45, "fade": 0.05 },
             { "on": false, "duration": 0.35, "fade": 0.05 }
           ]
+        },
+        "tech-box-2-edge-lights": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": true, "duration": 0.45, "fade": 0.05 },
+            { "on": false, "duration": 0.35, "fade": 0.05 }
+          ]
+        },
+        "tech-box-2-top-right-red-line": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.18, "fade": 0 },
+            { "on": false, "duration": 0.12, "fade": 0 }
+          ]
+        },
+        "tech-box-2-top-left-red-lights": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.18, "fade": 0 },
+            { "on": false, "duration": 0.12, "fade": 0 }
+          ]
+        },
+        "tech-box-2-top-left-green-light": {
+          "brightness": 0.2,
+          "animation": [
+            { "on": true, "duration": 0.4, "fade": 0.05 },
+            { "on": false, "duration": 0.6, "fade": 0.1 }
+          ]
+        },
+        "tech-box-2-bottom-left-amber-lights": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.55, "fade": 0.05 },
+            { "on": false, "duration": 0.45, "fade": 0.05 }
+          ]
+        },
+        "tech-box-2-bottom-left-green-light": {
+          "brightness": 0.2,
+          "animation": [
+            { "on": true, "duration": 0.4, "fade": 0.05 },
+            { "on": false, "duration": 0.6, "fade": 0.1 }
+          ]
+        },
+        "tech-box-2-bottom-right-lights": {
+          "brightness": 1,
+          "animation": [
+            { "on": true, "duration": 0.8, "fade": 0.1 },
+            { "on": false, "duration": 0.25, "fade": 0 }
+          ]
         }
       }
     },
@@ -134,6 +233,51 @@
         "edge-lights": {
           "brightness": 0.8,
           "color": "#FF2200",
+          "effect": "damage-hot"
+        },
+        "tech-box-2-edge-lights": {
+          "brightness": 0.8,
+          "color": "#FF2200",
+          "effect": "damage-hot"
+        },
+        "tech-box-2-top-right-red-line": {
+          "brightness": 1,
+          "effect": {
+            "type": "glitch",
+            "intensity": 8,
+            "speed": 10,
+            "cluster": 0.75,
+            "fade": 0
+          }
+        },
+        "tech-box-2-top-left-red-lights": {
+          "brightness": 1,
+          "effect": {
+            "type": "glitch",
+            "intensity": 8,
+            "speed": 10,
+            "cluster": 0.75,
+            "fade": 0
+          }
+        },
+        "tech-box-2-top-left-green-light": {
+          "effect": "damage-light"
+        },
+        "tech-box-2-bottom-left-amber-lights": {
+          "brightness": 0.85,
+          "effect": {
+            "type": "glitch",
+            "intensity": 6,
+            "speed": 7,
+            "cluster": 0.7,
+            "fade": 0.03
+          }
+        },
+        "tech-box-2-bottom-left-green-light": {
+          "effect": "damage-light"
+        },
+        "tech-box-2-bottom-right-lights": {
+          "brightness": 0.9,
           "effect": "damage-hot"
         }
       }

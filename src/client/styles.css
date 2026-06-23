@@ -20,3 +20,55 @@ input,
 select {
   font: inherit;
 }
+
+.brightness-slider {
+  height: 1.75rem;
+  appearance: none;
+  background: transparent;
+}
+
+.brightness-slider:focus {
+  outline: none;
+}
+
+.brightness-slider::-webkit-slider-runnable-track {
+  height: 0.25rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.35);
+}
+
+.brightness-slider::-webkit-slider-thumb {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: -0.4375rem;
+  appearance: none;
+  border: 1px solid #10151d;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.55);
+}
+
+.brightness-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #edf3f8;
+  outline-offset: 2px;
+}
+
+.brightness-slider::-moz-range-track {
+  height: 0.25rem;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.35);
+}
+
+.brightness-slider::-moz-range-thumb {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1px solid #10151d;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.55);
+}
+
+.brightness-slider:focus-visible::-moz-range-thumb {
+  outline: 2px solid #edf3f8;
+  outline-offset: 2px;
+}

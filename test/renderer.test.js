@@ -30,12 +30,17 @@ test('dimmer and rgbw elements render to configured DMX channels', async () => {
 
   const snapshot = renderSnapshot(config, state, 1000);
 
-  assert.equal(snapshot.frame.length, 10);
+  assert.equal(snapshot.frame.length, 20);
   assert.equal(snapshot.frame[0], 255);
   assert.equal(snapshot.frame[5], 88);
   assert.equal(snapshot.frame[6], 133);
   assert.equal(snapshot.frame[7], 166);
   assert.equal(snapshot.frame[8], 0);
+  assert.equal(snapshot.frame[10], 88);
+  assert.equal(snapshot.frame[11], 133);
+  assert.equal(snapshot.frame[12], 166);
+  assert.equal(snapshot.frame[13], 0);
+  assert.equal(snapshot.frame[14], 191);
 });
 
 test('global power off sends a zeroed safety frame', async () => {
@@ -45,7 +50,7 @@ test('global power off sends a zeroed safety frame', async () => {
 
   const snapshot = renderSnapshot(config, state, Date.now());
 
-  assert.deepEqual(snapshot.frame, Array.from({ length: 10 }, () => 0));
+  assert.deepEqual(snapshot.frame, Array.from({ length: 20 }, () => 0));
 });
 
 test('manual brightness preserves animation timing but lowers on value', async () => {

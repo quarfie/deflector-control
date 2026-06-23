@@ -1,34 +1,44 @@
 {
   "universe": 1,
-  "channelCount": 10,
+  "channelCount": 20,
+  "boxes": [
+    { "id": "tech-box-1", "label": "Tech Box 1" },
+    { "id": "tech-box-2", "label": "Tech Box 2" }
+  ],
   "elements": {
     "green-lights": {
       "label": "Green Lights",
+      "box": "tech-box-1",
       "type": "dimmer",
       "channels": { "level": 1 }
     },
     "orange-lights": {
       "label": "Orange Lights",
+      "box": "tech-box-1",
       "type": "dimmer",
       "channels": { "level": 2 }
     },
     "jelly-bean-buttons": {
       "label": "Jelly Bean Buttons",
+      "box": "tech-box-1",
       "type": "dimmer",
       "channels": { "level": 3 }
     },
     "switch-1": {
       "label": "Switch 1",
+      "box": "tech-box-1",
       "type": "dimmer",
       "channels": { "level": 4 }
     },
     "switch-bank": {
       "label": "Switch Bank",
+      "box": "tech-box-1",
       "type": "dimmer",
       "channels": { "level": 5 }
     },
     "edge-lights": {
       "label": "Edge Lights",
+      "box": "tech-box-1",
       "type": "rgbw",
       "channels": {
         "red": 6,
@@ -36,6 +46,53 @@
         "blue": 8,
         "white": 9
       }
+    },
+    "tech-box-2-edge-lights": {
+      "label": "Edge Lights",
+      "box": "tech-box-2",
+      "type": "rgbw",
+      "channels": {
+        "red": 11,
+        "green": 12,
+        "blue": 13,
+        "white": 14
+      }
+    },
+    "tech-box-2-top-right-red-line": {
+      "label": "Top Right Red Line",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 15 }
+    },
+    "tech-box-2-top-left-red-lights": {
+      "label": "Top Left Red Lights",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 16 }
+    },
+    "tech-box-2-top-left-green-light": {
+      "label": "Top Left Green Light",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 17 }
+    },
+    "tech-box-2-bottom-left-amber-lights": {
+      "label": "Bottom Left Amber Lights",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 18 }
+    },
+    "tech-box-2-bottom-left-green-light": {
+      "label": "Bottom Left Green Light",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 19 }
+    },
+    "tech-box-2-bottom-right-lights": {
+      "label": "Bottom Right Lights",
+      "box": "tech-box-2",
+      "type": "dimmer",
+      "channels": { "level": 20 }
     }
   }
 }

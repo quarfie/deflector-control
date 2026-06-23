@@ -29,6 +29,7 @@ export function getClientConfig(config) {
   return {
     universe: config.fixtures.universe,
     channelCount: config.fixtures.channelCount,
+    boxes: config.fixtures.boxes ?? [],
     elements: config.fixtures.elements,
     modes: config.modes.map(({ id, label }) => ({ id, label })),
     frameRate: config.defaults.frameRate,
