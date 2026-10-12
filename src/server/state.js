@@ -1,10 +1,11 @@
+import { globalModes, modesForBox } from './config.js';
 import { createInitialState, renderSnapshot } from './renderer.js';
 
 export class ControllerState {
   constructor(config) {
     this.config = config;
     this.state = createInitialState(config);
-    this.latestFrame = [];
+    this.latestFrames = {};
     this.latestElements = {};
   }
 
@@ -12,8 +13,9 @@ export class ControllerState {
     return {
       power: this.state.power,
       mode: this.state.mode,
+      boxModes: this.state.boxModes,
       manual: this.state.manual,
-      frame: this.latestFrame,
+      frames: this.latestFrames,
       elements: this.latestElements
     };
   }
@@ -24,11 +26,27 @@ export class ControllerState {
   }
 
   setMode(modeId) {
-    const exists = this.config.modes.some((mode) => mode.id === modeId);
+    const exists = globalModes(this.config).some((mode) => mode.id === modeId);
     if (!exists) throw new Error(`Unknown mode: ${modeId}`);
     this.state.mode = modeId;
-    this.state.manual = {};
+    for (const box of this.config.fixtures.boxes) {
+      if (this.state.boxModes[box.id] === 'global') this.clearBoxManual(box.id);
+    }
     this.state.startedAt = Date.now();
+  }
+
+  setBoxMode(boxId, modeId) {
+    if (!this.config.fixtures.boxes.some(box => box.id === boxId)) throw new Error(`Unknown unit: ${boxId}`);
+    if (modeId !== 'global' && !modesForBox(this.config, boxId).some(mode => mode.id === modeId)) throw new Error(`Unknown mode for ${boxId}: ${modeId}`);
+    this.state.boxModes[boxId] = modeId;
+    this.state.boxStartedAt[boxId] = Date.now();
+    this.clearBoxManual(boxId);
+  }
+
+  clearBoxManual(boxId) {
+    for (const [id, fixture] of Object.entries(this.config.fixtures.elements)) {
+      if (fixture.box === boxId) delete this.state.manual[id];
+    }
   }
 
   setManual(elementId, patch) {
@@ -52,7 +70,7 @@ export class ControllerState {
 
   render(nowMs = Date.now()) {
     const snapshot = renderSnapshot(this.config, this.state, nowMs);
-    this.latestFrame = snapshot.frame;
+    this.latestFrames = snapshot.frames;
     this.latestElements = snapshot.elements;
     return snapshot;
   }

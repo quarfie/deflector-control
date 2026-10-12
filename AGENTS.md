@@ -20,8 +20,7 @@ npm test
 npm run build
 npm start
 npm run start:dry
-npm run start:ola:local
-npm run start:ola:pi
+npm run start:live
 ```
 
 Use `npm test` for behavior-engine changes and `npm run build` for any client changes.
@@ -32,12 +31,13 @@ Use `npm test` for behavior-engine changes and `npm run build` for any client ch
 - Do not change `powerOnAtStartup` to `true` without explicit user intent.
 - Keep global power-off rendering as a zeroed DMX frame.
 - Keep unspecified channels zeroed.
-- Treat `pizero.local:9090` as a real hardware endpoint.
+- Treat `pizero.local:9090` and `pifive.local:9090` as a real hardware endpoint.
 
 ## Configuration Conventions
 
 - `config/fixtures.json` maps named elements to DMX channels.
-- `config/defaults.json` controls startup mode, output defaults, OLA URLs, and frame rate.
+- `config/defaults.json` controls startup mode, output defaults, and frame rate.
+- `config/universes.json` defines output types and OLA destinations; fixtures reference universes per element.
 - `config/modes.json` contains user-facing looks and animation definitions.
 - `config/effects.json` contains reusable generated effect presets.
 
@@ -50,7 +50,7 @@ Use compact, JavaScript-friendly keys such as `fade`, `brightness`, `forceOn`, a
 Maintain the layering model:
 
 1. Global power
-2. Active mode behavior
+2. Unit mode behavior (or the global mode when adopting global)
 3. Per-element manual overrides
 4. DMX safety/default output
 
@@ -59,7 +59,8 @@ Manual override expectations:
 - Brightness overrides affect the value used when an animation/effect is on.
 - Color overrides affect RGBW elements without stopping animation.
 - Force on/off overrides animation for that element.
-- Mode changes clear manual overrides.
+- Unit mode changes clear that unit’s manual overrides. Global mode changes clear overrides for units adopting global.
+- Independent unit modes retain their timing across global changes; adopting global rejoins its clock.
 - Power off clears manual overrides.
 
 ## Code Organization
@@ -83,7 +84,8 @@ At minimum, preserve coverage for:
 - Element states render to the expected DMX channels.
 - Manual brightness preserves animation timing.
 - Force on/off overrides mode behavior.
-- Mode changes clear manual overrides.
+- Unit mode changes clear that unit’s manual overrides. Global mode changes clear overrides for units adopting global.
+- Independent unit modes retain their timing across global changes; adopting global rejoins its clock.
 - Glitch intensity changes rough on/off ratio.
 - Output target switching works.
 

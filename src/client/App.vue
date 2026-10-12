@@ -7,19 +7,21 @@ const config = ref(null);
 const state = ref({
   power: false,
   mode: 'normal',
+  boxModes: {},
   manual: {},
-  frame: [],
+  frames: {},
   elements: {},
   output: {
-    mode: 'dry-run',
-    olaUrl: 'http://localhost:9090',
-    remoteOlaUrl: 'http://pizero.local:9090'
+    mode: 'dry-run'
   }
 });
 const busy = ref(false);
 const previewCarousel = ref(null);
 const activeBoxId = ref('tech-box-1');
 const brightnessDrafts = ref({});
+const colorDrafts = ref({});
+const activeColorElementId = ref(null);
+const colorSyncs = new Map();
 const activeBrightnessElementId = ref(null);
 const brightnessSyncs = new Map();
 let brightnessSyncVersion = 0;
@@ -120,6 +122,9 @@ function clearBrightnessDraft(elementId) {
 }
 
 function cancelBrightnessSyncs() {
+  colorDrafts.value = {};
+  activeColorElementId.value = null;
+  colorSyncs.clear();
   brightnessSyncVersion += 1;
   brightnessSyncs.clear();
   brightnessDrafts.value = {};
@@ -182,36 +187,31 @@ async function setMode(event) {
   await api('/api/mode', { mode: event.target.value });
 }
 
-async function setOutputSelection(value) {
-  if (value === 'dry-run') {
-    await api('/api/output', { mode: 'dry-run' });
-  } else if (value === 'ola-local') {
-    await api('/api/output', { mode: 'ola', olaUrl: config.value.olaUrl });
-  } else if (value === 'ola-pi') {
-    await api('/api/output', { mode: 'ola', olaUrl: config.value.remoteOlaUrl });
-  }
+const unitMode = computed(() => state.value.boxModes?.[activeBox.value.id] ?? 'global');
+const globalModeLabel = computed(() => config.value?.modes.find(mode => mode.id === state.value.mode)?.label ?? state.value.mode);
+const unitModeDescription = computed(() => unitMode.value === 'global'
+  ? `Following global: ${globalModeLabel.value}`
+  : activeBox.value.modes?.find(mode => mode.id === unitMode.value)?.description ?? 'This unit keeps its own mode when the global mode changes.');
+
+async function setUnitMode(event) {
+  cancelBrightnessSyncs();
+  await api(`/api/boxes/${encodeURIComponent(activeBox.value.id)}/mode`, { mode: event.target.value });
 }
 
-const outputSelection = computed(() => {
-  if (state.value.output?.mode !== 'ola') return 'dry-run';
-  if (state.value.output.olaUrl === config.value?.remoteOlaUrl) return 'ola-pi';
-  return 'ola-local';
+const outputSelection = computed(() => state.value.output?.mode ?? 'dry-run');
+const outputLabels = { 'dry-run': 'Dry Run', live: 'Live' };
+const outputDetail = computed(() => outputSelection.value === 'live' ? 'Configured universes' : 'No hardware output');
+const visibleUniverses = computed(() => {
+  const ids = new Set(Object.values(config.value?.elements ?? {}).filter(f => f.box === activeBox.value.id).map(f => f.universe));
+  return [...ids].map(id => {
+    const fixtures = Object.values(config.value.elements).filter(f => f.universe === id);
+    const lastChannel = Math.max(0, ...fixtures.flatMap(f => Object.values(f.channels)));
+    return { id, ...config.value.universes[id], frame: (state.value.frames[id] ?? []).slice(0, lastChannel) };
+  });
 });
 
-const outputOptions = ['dry-run', 'ola-local', 'ola-pi'];
-
-const outputLabels = {
-  'dry-run': 'Dry Run',
-  'ola-local': 'Local OLA',
-  'ola-pi': 'Pi OLA'
-};
-
-const outputDetail = computed(() => (state.value.output?.mode === 'ola' ? state.value.output.olaUrl : 'No DMX output'));
-
 async function cycleOutput() {
-  const currentIndex = outputOptions.indexOf(outputSelection.value);
-  const next = outputOptions[(currentIndex + 1) % outputOptions.length];
-  await setOutputSelection(next);
+  await api('/api/output', { mode: outputSelection.value === 'live' ? 'dry-run' : 'live' });
 }
 
 async function setBrightness(elementId, value) {
@@ -234,12 +234,66 @@ function previewBrightness(elementId, value) {
   queueBrightnessSync(elementId, brightness);
 }
 
-async function setColor(elementId, value) {
-  await api(`/api/manual/${elementId}`, { color: value });
+function beginColorEdit(elementId) {
+  colorDrafts.value[elementId] = effectiveColor(elementId);
+  activeColorElementId.value = elementId;
+}
+
+function endColorEdit(elementId) {
+  if (activeColorElementId.value === elementId) activeColorElementId.value = null;
+  if (!colorSyncs.get(elementId)?.inFlight) delete colorDrafts.value[elementId];
+}
+
+function setColor(elementId, value) {
+  const white = effectiveColor(elementId).slice(7, 9);
+  queueColor(elementId, value + white);
+}
+
+function effectiveColor(elementId) {
+  return colorDrafts.value[elementId] ?? manualFor(elementId).color ?? state.value.elements[elementId]?.color ?? '#ffffff';
+}
+
+function whiteValue(elementId) {
+  return Math.round(parseInt(effectiveColor(elementId).slice(7, 9) || '00', 16) / 255 * 100);
+}
+
+function setWhite(elementId, value) {
+  const white = Math.round(Number(value) / 100 * 255).toString(16).padStart(2, '0');
+  queueColor(elementId, effectiveColor(elementId).slice(0, 7) + white);
+}
+
+function queueColor(elementId, color) {
+  colorDrafts.value[elementId] = color;
+  if (!colorSyncs.has(elementId)) colorSyncs.set(elementId, { inFlight: false, pending: null });
+  const sync = colorSyncs.get(elementId);
+  sync.pending = color;
+  pumpColor(elementId, sync);
+}
+
+async function pumpColor(elementId, sync) {
+  if (sync.inFlight) return;
+  sync.inFlight = true;
+  try {
+    // Serialize writes so a slower earlier request cannot replace the final choice.
+    while (sync.pending !== null && colorSyncs.get(elementId) === sync) {
+      const color = sync.pending;
+      sync.pending = null;
+      await postState(`/api/manual/${elementId}`, { color });
+    }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    sync.inFlight = false;
+    if (colorSyncs.get(elementId) === sync && activeColorElementId.value !== elementId) {
+      delete colorDrafts.value[elementId];
+    }
+  }
 }
 
 async function setForce(elementId, mode) {
   if (mode === 'auto') {
+    colorSyncs.delete(elementId);
+    delete colorDrafts.value[elementId];
     await api(`/api/manual/${elementId}/clear`, {});
   } else if (mode === 'on') {
     await api(`/api/manual/${elementId}`, { forceOn: true, forceOff: false });
@@ -343,7 +397,8 @@ onMounted(async () => {
           <button
             class="flex h-14 w-36 items-center gap-2 rounded-full border border-rail bg-panel px-3 text-left text-slate-200 transition"
             :disabled="busy"
-            title="Cycle output"
+            :title="outputSelection === 'live' ? 'Switch to dry run' : 'Switch to live output'"
+            :aria-pressed="outputSelection === 'live'"
             @click="cycleOutput"
           >
             <RadioTower :size="18" class="shrink-0 text-cyan" />
@@ -375,7 +430,7 @@ onMounted(async () => {
             :key="box.id"
             class="w-full flex-none snap-center"
           >
-            <TechBoxPreview :box="box" :frame="state.frame" :power="state.power" />
+            <TechBoxPreview :box="box" :frames="state.frames" :power="state.power" :fixtures="config?.elements ?? {}" />
           </div>
         </div>
         <div class="mt-3 flex items-center justify-center gap-2">
@@ -393,7 +448,7 @@ onMounted(async () => {
 
       <section class="rounded-lg border border-rail bg-panel p-4">
         <div class="flex items-center justify-between gap-3">
-          <label class="text-sm font-medium text-slate-300" for="mode">Mode</label>
+          <label class="text-sm font-medium text-slate-300" for="mode">Global mode</label>
           <select
             id="mode"
             class="rounded-md border border-rail bg-hull px-3 py-2 text-base"
@@ -405,14 +460,31 @@ onMounted(async () => {
             </option>
           </select>
         </div>
-        <div class="mt-4 grid grid-cols-10 gap-1">
-          <div
-            v-for="(value, index) in state.frame"
-            :key="index"
-            class="h-10 rounded bg-hull text-center text-xs leading-10 text-slate-300"
-            :style="{ opacity: Math.max(0.25, value / 255) }"
+        <div class="mt-4 border-t border-rail pt-4">
+          <label class="mb-2 block text-sm font-medium text-slate-300" for="unit-mode">{{ activeBox.label }} mode</label>
+          <select
+            id="unit-mode"
+            class="w-full rounded-md border border-rail bg-hull px-3 py-2 text-base"
+            :value="unitMode"
+            :disabled="busy"
+            @change="setUnitMode"
           >
-            {{ index + 1 }}
+            <option value="global">Adopt global — {{ globalModeLabel }}</option>
+            <option v-for="mode in activeBox.modes ?? []" :key="mode.id" :value="mode.id">{{ mode.label }}</option>
+          </select>
+          <p class="mt-2 text-xs text-slate-400">{{ unitModeDescription }}</p>
+        </div>
+        <div v-for="universe in visibleUniverses" :key="universe.id" class="mt-4">
+          <p class="mb-2 text-xs text-slate-400">{{ universe.label }} · {{ universe.olaUrl }} · Universe {{ universe.universe }}</p>
+          <div class="grid grid-cols-10 gap-1">
+            <div
+              v-for="(value, index) in universe.frame"
+              :key="index"
+              class="h-10 rounded bg-hull text-center text-xs leading-10 text-slate-300"
+              :style="{ opacity: Math.max(0.25, value / 255) }"
+            >
+              {{ index + 1 }}
+            </div>
           </div>
         </div>
       </section>
@@ -452,11 +524,16 @@ onMounted(async () => {
             </div>
             <div class="flex items-center gap-2">
               <input
-                v-if="element.type === 'rgbw'"
+                v-if="element.type === 'rgbw' || element.type === 'rgbcw'"
                 class="h-10 w-12 rounded border border-rail bg-hull"
                 type="color"
-                :value="manualFor(element.id).color ?? state.elements[element.id]?.color ?? '#ffffff'"
+                :aria-label="`${element.label} color`"
+                :value="effectiveColor(element.id).slice(0, 7)"
+                @pointerdown="beginColorEdit(element.id)"
+                @focus="beginColorEdit(element.id)"
+                @input="setColor(element.id, $event.target.value)"
                 @change="setColor(element.id, $event.target.value)"
+                @blur="endColorEdit(element.id)"
               />
               <span
                 v-if="activeBrightnessElementId === element.id"
@@ -488,6 +565,7 @@ onMounted(async () => {
               <input
                 class="brightness-slider relative z-10 w-full"
                 type="range"
+                :aria-label="`${element.label} brightness`"
                 min="0"
                 max="100"
                 :value="brightnessValue(element.id)"
@@ -499,6 +577,24 @@ onMounted(async () => {
                 @blur="stopBrightnessDrag(element.id)"
               />
             </span>
+          </label>
+          <label v-if="element.box === 'light-up-sign'" class="mt-3 block text-sm text-slate-300">
+            <span class="flex justify-between"><span>White</span><span>{{ whiteValue(element.id) }}%</span></span>
+            <input
+              class="mt-2 w-full accent-cyan"
+              type="range"
+              min="0"
+              max="100"
+              :aria-label="`${element.label} white`"
+              :value="whiteValue(element.id)"
+              @pointerdown="beginColorEdit(element.id)"
+              @focus="beginColorEdit(element.id)"
+              @input="setWhite(element.id, $event.target.value)"
+              @change="setWhite(element.id, $event.target.value)"
+              @pointerup="endColorEdit(element.id)"
+              @pointercancel="endColorEdit(element.id)"
+              @blur="endColorEdit(element.id)"
+            />
           </label>
         </article>
       </section>

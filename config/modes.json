@@ -94,6 +94,37 @@
             { "on": false, "duration": 0.4, "fade": 0.05 },
             { "on": true, "duration": 5, "fade": 0.4 }
           ]
+        },
+        "emerg-stbd-thruster-lower-strip": {
+          "brightness": 0.65,
+          "color": "#000000FF",
+          "animation": [
+            { "on": true, "duration": 8, "fade": 2 }
+          ]
+        },
+        "sign-zone-1": {
+          "brightness": 0.75,
+          "color": "#000000FF"
+        },
+        "sign-zone-2": {
+          "brightness": 0.75,
+          "color": "#000000FF"
+        },
+        "sign-zone-3": {
+          "brightness": 0.75,
+          "color": "#000000FF"
+        },
+        "sign-zone-4": {
+          "brightness": 0.75,
+          "color": "#000000FF"
+        },
+        "sign-zone-5": {
+          "brightness": 0.75,
+          "color": "#000000FF"
+        },
+        "sign-zone-6": {
+          "brightness": 0.75,
+          "color": "#000000FF"
         }
       }
     },
@@ -193,6 +224,86 @@
             { "on": true, "duration": 0.8, "fade": 0.1 },
             { "on": false, "duration": 0.25, "fade": 0 }
           ]
+        },
+        "emerg-stbd-thruster-lower-strip": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": true, "duration": 0.45, "fade": 0.05 },
+            { "on": false, "duration": 0.35, "fade": 0.05 }
+          ]
+        },
+        "sign-zone-1": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": true, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 }
+          ]
+        },
+        "sign-zone-2": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": true, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 }
+          ]
+        },
+        "sign-zone-3": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": true, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 }
+          ]
+        },
+        "sign-zone-4": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": true, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 }
+          ]
+        },
+        "sign-zone-5": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": true, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 }
+          ]
+        },
+        "sign-zone-6": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": false, "duration": 0.2, "fade": 0.03 },
+            { "on": true, "duration": 0.2, "fade": 0.03 }
+          ]
         }
       }
     },
@@ -279,6 +390,903 @@
         "tech-box-2-bottom-right-lights": {
           "brightness": 0.9,
           "effect": "damage-hot"
+        },
+        "emerg-stbd-thruster-lower-strip": {
+          "brightness": 0.8,
+          "color": "#FF2200",
+          "effect": "damage-hot"
+        },
+        "sign-zone-1": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        },
+        "sign-zone-2": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        },
+        "sign-zone-3": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        },
+        "sign-zone-4": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        },
+        "sign-zone-5": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        },
+        "sign-zone-6": {
+          "brightness": 0.8,
+          "color": "#000000FF",
+          "effect": "damage-light"
+        }
+      }
+    },
+    {
+      "id": "sign-breath",
+      "label": "Slow Breath",
+      "description": "All zones gently brighten and dim together over 12 seconds.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        },
+        "sign-zone-2": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        },
+        "sign-zone-3": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        },
+        "sign-zone-4": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        },
+        "sign-zone-5": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        },
+        "sign-zone-6": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": "sign-breath"
+        }
+      }
+    },
+    {
+      "id": "sign-wave",
+      "label": "Gentle Wave",
+      "description": "A slow brightness wave travels through the six white zones.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.0
+          }
+        },
+        "sign-zone-2": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.1667
+          }
+        },
+        "sign-zone-3": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.3333
+          }
+        },
+        "sign-zone-4": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.5
+          }
+        },
+        "sign-zone-5": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.6667
+          }
+        },
+        "sign-zone-6": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 16,
+            "min": 0.25,
+            "max": 1,
+            "phase": 0.8333
+          }
+        }
+      }
+    },
+    {
+      "id": "sign-shimmer",
+      "label": "Quiet Shimmer",
+      "description": "Small, independent brightness changes give each color a quiet shimmer.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 7,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.0
+          }
+        },
+        "sign-zone-2": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 11,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.1667
+          }
+        },
+        "sign-zone-3": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 9,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.3333
+          }
+        },
+        "sign-zone-4": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 13,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.5
+          }
+        },
+        "sign-zone-5": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 8,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.6667
+          }
+        },
+        "sign-zone-6": {
+          "brightness": 0.75,
+          "color": "#000000FF",
+          "effect": {
+            "type": "pulse",
+            "period": 10,
+            "min": 0.4,
+            "max": 1,
+            "phase": 0.8333
+          }
+        }
+      }
+    },
+    {
+      "id": "sign-spectrum",
+      "label": "Spectrum Drift",
+      "description": "A slow 60-second journey through the spectrum, with a small color offset between zones.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.0
+          }
+        },
+        "sign-zone-2": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.035
+          }
+        },
+        "sign-zone-3": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.07
+          }
+        },
+        "sign-zone-4": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.105
+          }
+        },
+        "sign-zone-5": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.14
+          }
+        },
+        "sign-zone-6": {
+          "brightness": 0.75,
+          "effect": {
+            "type": "spectrum",
+            "period": 60,
+            "phase": 0.175
+          }
+        }
+      }
+    },
+    {
+      "id": "red-alert-b",
+      "label": "Red Alert B",
+      "description": "Zones build on 6\u20135\u20134\u20133\u20132\u20131, then turn off in the same order.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-2": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-3": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-4": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-5": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-6": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "red-alert-c",
+      "label": "Red Alert C",
+      "description": "Zones 1 and 2 alternate every 0.4 seconds while zones 3–4–5–6–5–4 chase every 0.2 seconds.",
+      "boxes": [
+        "light-up-sign"
+      ],
+      "elements": {
+        "sign-zone-1": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-2": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-3": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-4": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-5": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
+        },
+        "sign-zone-6": {
+          "brightness": 0.9,
+          "color": "#FF2200",
+          "animation": [
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": true,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            },
+            {
+              "on": false,
+              "duration": 0.2,
+              "fade": 0.03
+            }
+          ]
         }
       }
     }

@@ -4,11 +4,11 @@ export class DryRunOutput {
     this.logEveryMs = logEveryMs;
   }
 
-  async send(frame) {
+  async send(frames) {
     const now = Date.now();
     if (now - this.lastLogAt >= this.logEveryMs) {
       this.lastLogAt = now;
-      console.log(`[dry-run] ${frame.join(',')}`);
+      for (const [id, frame] of Object.entries(frames)) console.log(`[dry-run:${id}] ${frame.join(',')}`);
     }
   }
 }
@@ -30,7 +30,8 @@ export class OlaOutput {
       headers: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      body
+      body,
+      signal: AbortSignal.timeout(1000)
     });
 
     if (!response.ok) {
@@ -45,43 +46,42 @@ export function createOutput(config) {
 
 export class OutputManager {
   constructor(config) {
-    this.config = config;
     this.dryRun = new DryRunOutput();
     this.mode = 'dry-run';
-    this.olaUrl = process.env.OLA_URL ?? config.defaults.olaUrl;
-    this.set({
-      mode: process.env.DMX_OUTPUT ?? config.defaults.output ?? 'dry-run',
-      olaUrl: this.olaUrl
-    });
+    this.targets = Object.fromEntries(Object.entries(config.universes).map(([id, universe]) => {
+      // Dispatch by transport type here when additional adapters are implemented.
+      if (universe.type !== 'ola') throw new Error(`Unsupported universe type: ${universe.type}`);
+      return [id, { adapter: new OlaOutput(universe), pending: false }];
+    }));
+    this.set({ mode: process.env.DMX_OUTPUT ?? config.defaults.output ?? 'dry-run' });
   }
 
   get publicState() {
-    return {
-      mode: this.mode,
-      olaUrl: this.olaUrl,
-      remoteOlaUrl: this.config.defaults.remoteOlaUrl
-    };
+    return { mode: this.mode };
   }
 
   set({ mode, olaUrl }) {
+    if (olaUrl !== undefined) throw new Error('Configure destinations in config/universes.json');
     const nextMode = mode ?? this.mode;
-    if (!['dry-run', 'ola'].includes(nextMode)) {
-      throw new Error(`Unknown output mode: ${nextMode}`);
-    }
-
+    if (!['dry-run', 'live'].includes(nextMode)) throw new Error(`Unknown output mode: ${nextMode}`);
     this.mode = nextMode;
-    if (olaUrl !== undefined) {
-      this.olaUrl = String(olaUrl).replace(/\/$/, '');
-    }
-
-    this.ola = new OlaOutput({
-      olaUrl: this.olaUrl,
-      universe: this.config.fixtures.universe
-    });
   }
 
-  async send(frame) {
-    if (this.mode === 'ola') return this.ola.send(frame);
-    return this.dryRun.send(frame);
+  async send(frames) {
+    if (this.mode === 'dry-run') return this.dryRun.send(frames);
+    const results = await Promise.allSettled(Object.entries(this.targets).map(async ([id, target]) => {
+      // A slow host must not queue frames or block healthy universes.
+      if (target.pending) return;
+      target.pending = true;
+      try {
+        await target.adapter.send(frames[id]);
+      } catch (error) {
+        throw new Error(`${id}: ${error.message}`);
+      } finally {
+        target.pending = false;
+      }
+    }));
+    const failures = results.filter(result => result.status === 'rejected');
+    if (failures.length) throw new Error(failures.map(result => result.reason.message).join('; '));
   }
 }

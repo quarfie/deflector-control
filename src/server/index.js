@@ -91,6 +91,15 @@ async function handleApi(request, response) {
       return;
     }
 
+    const boxModeMatch = url.pathname.match(/^\/api\/boxes\/([^/]+)\/mode$/);
+    if (request.method === 'POST' && boxModeMatch) {
+      const body = await readJsonBody(request);
+      controller.setBoxMode(decodeURIComponent(boxModeMatch[1]), body.mode);
+      publishState();
+      sendJson(response, 200, publicState());
+      return;
+    }
+
     if (request.method === 'POST' && url.pathname === '/api/output') {
       output.set(await readJsonBody(request));
       publishState();
@@ -183,7 +192,7 @@ setInterval(async () => {
   const snapshot = controller.render();
   writeStateToClients();
   try {
-    await output.send(snapshot.frame);
+    await output.send(snapshot.frames);
   } catch (error) {
     const now = Date.now();
     if (now - lastOutputError > 5000) {

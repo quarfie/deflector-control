@@ -18,5 +18,11 @@
     "speed": 8,
     "cluster": 0.6,
     "fade": 0
+  },
+  "sign-breath": {
+    "type": "pulse",
+    "period": 12,
+    "min": 0.2,
+    "max": 1
   }
 }

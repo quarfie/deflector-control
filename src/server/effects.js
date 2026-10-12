@@ -25,6 +25,7 @@ export function resolveEffect(effect, effects) {
 
 export function evaluateEffect(effect, elapsedSeconds, elementId) {
   if (!effect) return null;
+  if (effect.type === 'spectrum') return evaluateSpectrum(effect, elapsedSeconds);
   if (effect.type === 'pulse') return evaluatePulse(effect, elapsedSeconds);
   if (effect.type === 'glitch') return evaluateGlitch(effect, elapsedSeconds, elementId);
   return null;
@@ -34,7 +35,7 @@ function evaluatePulse(effect, elapsedSeconds) {
   const period = Math.max(0.1, Number(effect.period ?? 3));
   const min = clamp(Number(effect.min ?? 0.2));
   const max = clamp(Number(effect.max ?? 1));
-  const phase = (Math.sin((elapsedSeconds / period) * Math.PI * 2 - Math.PI / 2) + 1) / 2;
+  const phase = (Math.sin((elapsedSeconds / period + Number(effect.phase ?? 0)) * Math.PI * 2 - Math.PI / 2) + 1) / 2;
   return { on: true, level: min + (max - min) * phase };
 }
 
@@ -60,4 +61,19 @@ function evaluateGlitch(effect, elapsedSeconds, elementId) {
   const progress = clamp(local / (fade * speed));
   const level = prior + (target - prior) * progress;
   return { on: level > 0.001, level };
+}
+
+// Hue traverses RGB continuously; phase is measured in fractions of a cycle.
+function evaluateSpectrum(effect, elapsedSeconds) {
+  const period = Math.max(0.1, Number(effect.period ?? 60));
+  const hue = ((elapsedSeconds / period + Number(effect.phase ?? 0)) % 1 + 1) % 1;
+  const sector = hue * 6;
+  const rising = sector % 1;
+  const falling = 1 - rising;
+  const rgb = [
+    [1, rising, 0], [falling, 1, 0], [0, 1, rising],
+    [0, falling, 1], [rising, 0, 1], [1, 0, falling]
+  ][Math.floor(sector)];
+  const color = '#' + rgb.map(value => Math.round(value * 255).toString(16).padStart(2, '0')).join('');
+  return { on: true, level: 1, color };
 }

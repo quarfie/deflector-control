@@ -1,44 +1,50 @@
 {
-  "universe": 1,
-  "channelCount": 20,
   "boxes": [
-    { "id": "tech-box-1", "label": "Tech Box 1" },
-    { "id": "tech-box-2", "label": "Tech Box 2" }
+    { "id": "tech-box-1", "label": "Tech Box 1", "defaultMode": "global" },
+    { "id": "tech-box-2", "label": "Tech Box 2", "defaultMode": "global" },
+    { "id": "emerg-stbd-thruster-control", "label": "EMERG STBD Thruster Control", "defaultMode": "global" },
+    { "id": "light-up-sign", "label": "Light-Up Sign", "defaultMode": "global" }
   ],
   "elements": {
     "green-lights": {
       "label": "Green Lights",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 1 }
     },
     "orange-lights": {
       "label": "Orange Lights",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 2 }
     },
     "jelly-bean-buttons": {
       "label": "Jelly Bean Buttons",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 3 }
     },
     "switch-1": {
       "label": "Switch 1",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 4 }
     },
     "switch-bank": {
       "label": "Switch Bank",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 5 }
     },
     "edge-lights": {
       "label": "Edge Lights",
       "box": "tech-box-1",
+      "universe": "tech-boxes",
       "type": "rgbw",
       "channels": {
         "red": 6,
@@ -50,6 +56,7 @@
     "tech-box-2-edge-lights": {
       "label": "Edge Lights",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "rgbw",
       "channels": {
         "red": 11,
@@ -61,38 +68,99 @@
     "tech-box-2-top-right-red-line": {
       "label": "Top Right Red Line",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 15 }
     },
     "tech-box-2-top-left-red-lights": {
       "label": "Top Left Red Lights",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 16 }
     },
     "tech-box-2-top-left-green-light": {
       "label": "Top Left Green Light",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 17 }
     },
     "tech-box-2-bottom-left-amber-lights": {
       "label": "Bottom Left Amber Lights",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 18 }
     },
     "tech-box-2-bottom-left-green-light": {
       "label": "Bottom Left Green Light",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 19 }
     },
     "tech-box-2-bottom-right-lights": {
       "label": "Bottom Right Lights",
       "box": "tech-box-2",
+      "universe": "tech-boxes",
       "type": "dimmer",
       "channels": { "level": 20 }
+    },
+    "emerg-stbd-thruster-lower-strip": {
+      "label": "Lower Area Strip",
+      "box": "emerg-stbd-thruster-control",
+      "universe": "tech-boxes",
+      "type": "rgbcw",
+      "channels": {
+        "red": 21,
+        "green": 22,
+        "blue": 23,
+        "coldWhite": 24,
+        "white": 25
+      }
+    },
+    "sign-zone-1": {
+      "label": "Zone 1 — Outer Border",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 1, "green": 2, "blue": 3, "white": 4 }
+    },
+    "sign-zone-2": {
+      "label": "Zone 2 — Inner Border",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 5, "green": 6, "blue": 7, "white": 8 }
+    },
+    "sign-zone-3": {
+      "label": "Zone 3 — Paired Strips",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 9, "green": 10, "blue": 11, "white": 12 }
+    },
+    "sign-zone-4": {
+      "label": "Zone 4 — Paired Strips",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 13, "green": 14, "blue": 15, "white": 16 }
+    },
+    "sign-zone-5": {
+      "label": "Zone 5 — Paired Strips",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 17, "green": 18, "blue": 19, "white": 20 }
+    },
+    "sign-zone-6": {
+      "label": "Zone 6 — Paired Strips",
+      "box": "light-up-sign",
+      "universe": "sign",
+      "type": "rgbw",
+      "channels": { "red": 21, "green": 22, "blue": 23, "white": 24 }
     }
   }
 }

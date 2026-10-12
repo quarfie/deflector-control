@@ -1,0 +1,96 @@
+/* Runtime lighting lives outside the editable SVGs. Fixed fills and geometry stay in the artwork. */
+.tech-box-preview > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* These properties belong to the live preview, even if an editor exports inline styles. */
+.tech-box-preview .light {
+  opacity: max(0.12, var(--light-level, 0)) !important;
+  filter: drop-shadow(0 0 calc(8px + var(--light-level, 0) * 26px * var(--glow-scale, 1)) currentColor)
+    drop-shadow(0 0 calc(4px + var(--light-level, 0) * 13px * var(--glow-scale, 1)) currentColor) !important;
+}
+
+.tech-box-preview .light-edge { --light-level: var(--edge-level, 0); }
+.tech-box-preview .light-green { --light-level: var(--green-level, 0); }
+.tech-box-preview .light-orange { --light-level: var(--orange-level, 0); }
+.tech-box-preview .light-jelly { --light-level: var(--jelly-level, 0); }
+.tech-box-preview .light-switch1 { --light-level: var(--switch1-level, 0); }
+.tech-box-preview .light-switch-bank { --light-level: var(--switch-bank-level, 0); }
+.tech-box-preview .light-top-right-red-line { --light-level: var(--top-right-red-line-level, 0); }
+.tech-box-preview .light-top-left-green { --light-level: var(--top-left-green-level, 0); }
+.tech-box-preview .light-bottom-right { --light-level: var(--bottom-right-level, 0); }
+.tech-box-preview .light-top-left-red { --light-level: var(--top-left-red-level, 0); }
+.tech-box-preview .light-bottom-left-green { --light-level: var(--bottom-left-green-level, 0); }
+.tech-box-preview .light-bottom-left-amber { --light-level: var(--bottom-left-amber-level, 0); }
+.tech-box-preview .light-strip { --light-level: var(--strip-level, 0); }
+
+.tech-box-preview .glow-scale-04 { --glow-scale: 0.4; }
+.tech-box-preview .glow-scale-065 { --glow-scale: 0.65; }
+.tech-box-preview .glow-scale-07 { --glow-scale: 0.7; }
+.tech-box-preview .glow-scale-08 { --glow-scale: 0.8; }
+.tech-box-preview .glow-scale-085 { --glow-scale: 0.85; }
+.tech-box-preview .glow-scale-09 { --glow-scale: 0.9; }
+.tech-box-preview .glow-scale-11 { --glow-scale: 1.1; }
+.tech-box-preview .glow-scale-115 { --glow-scale: 1.15; }
+.tech-box-preview .glow-scale-12 { --glow-scale: 1.2; }
+.tech-box-preview .glow-scale-125 { --glow-scale: 1.25; }
+.tech-box-preview .glow-scale-15 { --glow-scale: 1.5; }
+
+.tech-box-preview .light-edge {
+  stroke: var(--edge-color) !important;
+  color: var(--edge-color) !important;
+}
+
+.tech-box-preview .light-strip {
+  stroke: var(--strip-color) !important;
+  color: var(--strip-color) !important;
+}
+
+.tech-box-preview .edge-panel {
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 0 calc(16px + var(--edge-level) * 36px) var(--edge-color)) !important;
+}
+
+.tech-box-preview .jelly-label {
+  opacity: calc(0.35 + var(--jelly-level, 0) * 0.65) !important;
+}
+
+/* A zone class connects both physical strips to the same RGBW fixture. */
+.tech-box-preview .light-zone-1 {
+  --light-level: var(--zone-1-level, 0);
+  stroke: var(--zone-1-color, #000) !important;
+  color: var(--zone-1-color, #000) !important;
+}
+
+.tech-box-preview .light-zone-2 {
+  --light-level: var(--zone-2-level, 0);
+  stroke: var(--zone-2-color, #000) !important;
+  color: var(--zone-2-color, #000) !important;
+}
+
+.tech-box-preview .light-zone-3 {
+  --light-level: var(--zone-3-level, 0);
+  stroke: var(--zone-3-color, #000) !important;
+  color: var(--zone-3-color, #000) !important;
+}
+
+.tech-box-preview .light-zone-4 {
+  --light-level: var(--zone-4-level, 0);
+  stroke: var(--zone-4-color, #000) !important;
+  color: var(--zone-4-color, #000) !important;
+}
+
+.tech-box-preview .light-zone-5 {
+  --light-level: var(--zone-5-level, 0);
+  stroke: var(--zone-5-color, #000) !important;
+  color: var(--zone-5-color, #000) !important;
+}
+
+.tech-box-preview .light-zone-6 {
+  --light-level: var(--zone-6-level, 0);
+  stroke: var(--zone-6-color, #000) !important;
+  color: var(--zone-6-color, #000) !important;
+}
+

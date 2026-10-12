@@ -1,0 +1,16 @@
+{
+  "tech-boxes": {
+    "label": "Tech Boxes",
+    "type": "ola",
+    "olaUrl": "http://pizero.local:9090",
+    "universe": 1,
+    "channelCount": 512
+  },
+  "sign": {
+    "label": "Light-Up Sign",
+    "type": "ola",
+    "olaUrl": "http://pifive.local:9090",
+    "universe": 1,
+    "channelCount": 512
+  }
+}

@@ -9,9 +9,8 @@
     "build": "vite build",
     "start": "node src/server/index.js",
     "start:dry": "DMX_OUTPUT=dry-run node src/server/index.js",
-    "start:ola:local": "DMX_OUTPUT=ola OLA_URL=http://localhost:9090 node src/server/index.js",
-    "start:ola:pi": "DMX_OUTPUT=ola OLA_URL=http://pizero.local:9090 node src/server/index.js",
-    "test": "node --test"
+    "test": "node --test",
+    "start:live": "DMX_OUTPUT=live node src/server/index.js"
   },
   "dependencies": {},
   "devDependencies": {

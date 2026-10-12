@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <title>Six-zone light-up sign</title>
+  <desc>Two open rounded borders surround four pairs of bent LED strips. Zones from the outside: purple, red, green, blue, yellow, cyan.</desc>
+  <defs>
+    <linearGradient id="frame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#353238"/>
+      <stop offset="0.35" stop-color="#17171c"/>
+      <stop offset="1" stop-color="#090a0e"/>
+    </linearGradient>
+    <radialGradient id="backing" cx="48%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#111017"/>
+      <stop offset="1" stop-color="#07070c"/>
+    </radialGradient>
+  </defs>
+  <!-- Frame and backing are static. Keep the lighting classes on the ten tube faces. -->
+  <rect x="8" y="8" width="984" height="984" rx="3" fill="url(#frame)" stroke="#08090b" stroke-width="8"/>
+  <rect x="31" y="31" width="938" height="938" fill="url(#backing)" stroke="#353039" stroke-width="3"/>
+  <rect x="38" y="38" width="924" height="924" fill="none" stroke="#1d1725" stroke-width="5"/>
+  <g id="mounting-screws" fill="#38343d" stroke="#0c0c10" stroke-width="2">
+    <circle cx="46" cy="46" r="5"/>
+    <circle cx="954" cy="46" r="5"/>
+    <circle cx="46" cy="954" r="5"/>
+    <circle cx="954" cy="954" r="5"/>
+  </g>
+  <g id="tube-beds" fill="none" stroke="#25232b" stroke-width="30" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M390 927 H172 Q72 927 72 827 V172 Q72 72 172 72 H828 Q928 72 928 172 V827 Q928 927 828 927 H590"/>
+    <path d="M436 889 H192 Q112 889 112 809 V192 Q112 112 192 112 H808 Q888 112 888 192 V809 Q888 889 808 889 H546"/>
+    <path d="M205 375 C296 405 300 458 300 534 V774"/>
+    <path d="M700 220 L698 498 C698 575 731 605 779 624"/>
+    <path d="M199 317 C323 349 358 397 358 520 L356 689"/>
+    <path d="M640 310 L637 512 C637 619 689 662 783 682"/>
+    <path d="M205 259 C377 292 419 382 417 523 L415 610"/>
+    <path d="M579 405 L579 530 C579 669 659 716 787 739"/>
+    <path d="M200 200 C425 242 477 371 475 542 L475 671"/>
+    <path d="M522 335 L522 531 C522 705 627 771 783 798"/>
+  </g>
+  <g fill="none" stroke-width="23" stroke-linecap="round" stroke-linejoin="round">
+    <g id="zone-1">
+      <title>Zone 1 — outer border (one strip)</title>
+      <path class="light light-zone-1" stroke="#e000ff" color="#e000ff" d="M390 927 H172 Q72 927 72 827 V172 Q72 72 172 72 H828 Q928 72 928 172 V827 Q928 927 828 927 H590"/>
+    </g>
+    <g id="zone-2">
+      <title>Zone 2 — inner border (one strip)</title>
+      <path class="light light-zone-2" stroke="#ff1026" color="#ff1026" d="M436 889 H192 Q112 889 112 809 V192 Q112 112 192 112 H808 Q888 112 888 192 V809 Q888 889 808 889 H546"/>
+    </g>
+    <g id="zone-3">
+      <title>Zone 3 — green pair in the reference photo</title>
+      <path class="light light-zone-3" stroke="#20ff35" color="#20ff35" d="M205 375 C296 405 300 458 300 534 V774"/>
+      <path class="light light-zone-3" stroke="#20ff35" color="#20ff35" d="M700 220 L698 498 C698 575 731 605 779 624"/>
+    </g>
+    <g id="zone-4">
+      <title>Zone 4 — blue pair in the reference photo</title>
+      <path class="light light-zone-4" stroke="#153bff" color="#153bff" d="M199 317 C323 349 358 397 358 520 L356 689"/>
+      <path class="light light-zone-4" stroke="#153bff" color="#153bff" d="M640 310 L637 512 C637 619 689 662 783 682"/>
+    </g>
+    <g id="zone-5">
+      <title>Zone 5 — yellow pair in the reference photo</title>
+      <path class="light light-zone-5" stroke="#fff13c" color="#fff13c" d="M205 259 C377 292 419 382 417 523 L415 610"/>
+      <path class="light light-zone-5" stroke="#fff13c" color="#fff13c" d="M579 405 L579 530 C579 669 659 716 787 739"/>
+    </g>
+    <g id="zone-6">
+      <title>Zone 6 — light blue pair in the reference photo</title>
+      <path class="light light-zone-6" stroke="#00d9ff" color="#00d9ff" d="M200 200 C425 242 477 371 475 542 L475 671"/>
+      <path class="light light-zone-6" stroke="#00d9ff" color="#00d9ff" d="M522 335 L522 531 C522 705 627 771 783 798"/>
+    </g>
+  </g>
+</svg>
